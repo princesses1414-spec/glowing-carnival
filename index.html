@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ayesha Nisar — Computer Science Student Portfolio" />
+  <title>Ayesha Nisar | CS Student Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(20, 29, 53, 0.78);
+      --text: #f4f7ff;
+      --muted: #aab5cc;
+      --accent: #8b9cff;
+      --accent2: #54e0c1;
+      --line: rgba(255,255,255,.12);
+      --shadow: 0 20px 60px rgba(0,0,0,.28);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 85% 10%, rgba(139,156,255,.18), transparent 28rem),
+        radial-gradient(circle at 5% 45%, rgba(84,224,193,.10), transparent 25rem),
+        var(--bg);
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1080px, 90%); margin: auto; }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(11,16,32,.82); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .logo { font-weight: 800; letter-spacing: .5px; font-size: 1.15rem; }
+    .logo span { color: var(--accent2); }
+    .nav-links { display: flex; gap: 25px; list-style: none; color: var(--muted); font-size: .94rem; }
+    .nav-links a:hover { color: var(--accent2); }
+    .menu-btn { display: none; border: 1px solid var(--line); color: var(--text); background: transparent; padding: 8px 12px; border-radius: 9px; }
+    .hero { min-height: 82vh; display: grid; grid-template-columns: 1.35fr .85fr; align-items: center; gap: 55px; padding: 75px 0; }
+    .eyebrow { color: var(--accent2); text-transform: uppercase; letter-spacing: 2px; font-size: .78rem; font-weight: 700; }
+    h1 { font-size: clamp(2.7rem, 7vw, 5rem); line-height: 1.08; margin: 16px 0 20px; letter-spacing: -2px; }
+    h1 span { color: var(--accent); }
+    .hero p { color: var(--muted); max-width: 590px; font-size: 1.08rem; }
+    .actions { display: flex; gap: 13px; flex-wrap: wrap; margin-top: 30px; }
+    .btn { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 700; border: 1px solid var(--line); transition: .2s; }
+    .btn.primary { background: linear-gradient(120deg, var(--accent), #697cff); color: #081020; border: 0; }
+    .btn:hover { transform: translateY(-3px); }
+    .profile-card { background: linear-gradient(145deg, rgba(139,156,255,.18), rgba(84,224,193,.08)); border: 1px solid var(--line); border-radius: 28px; padding: 30px; box-shadow: var(--shadow); text-align: center; }
+    .avatar { width: 170px; height: 170px; margin: 0 auto 22px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #10172b; font-size: 3.2rem; font-weight: 900; border: 7px solid rgba(255,255,255,.12); }
+    .profile-card h2 { font-size: 1.35rem; }
+    .profile-card p { color: var(--muted); font-size: .92rem; margin-top: 5px; }
+    section { padding: 78px 0; scroll-margin-top: 70px; }
+    .section-heading { margin-bottom: 30px; }
+    .section-heading h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-top: 7px; }
+    .section-heading p { color: var(--muted); margin-top: 8px; }
+    .about-box, .card { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 25px; box-shadow: var(--shadow); }
+    .about-box p { color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card h3 { margin: 10px 0 7px; }
+    .card p { color: var(--muted); font-size: .94rem; }
+    .icon { font-size: 1.65rem; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 11px; }
+    .skill { border: 1px solid var(--line); background: rgba(255,255,255,.05); color: #dce4ff; padding: 9px 15px; border-radius: 999px; font-size: .92rem; }
+    .project-card { display: flex; flex-direction: column; min-height: 210px; }
+    .project-card .tag { color: var(--accent2); font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+    .project-card a { margin-top: auto; padding-top: 17px; color: var(--accent); font-weight: 700; }
+    .contact-wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 20px; }
+    .contact-info p { color: var(--muted); margin-top: 10px; }
+    .contact-form { display: grid; gap: 13px; }
+    input, textarea { width: 100%; padding: 13px 14px; border-radius: 10px; border: 1px solid var(--line); background: rgba(255,255,255,.06); color: var(--text); font: inherit; outline: none; }
+    input:focus, textarea:focus { border-color: var(--accent); }
+    textarea { min-height: 130px; resize: vertical; }
+    .contact-form button { cursor: pointer; font: inherit; }
+    #form-message { color: var(--accent2); min-height: 24px; font-size: .9rem; }
+    footer { border-top: 1px solid var(--line); padding: 25px 0; color: var(--muted); text-align: center; font-size: .9rem; }
+    @media (max-width: 760px) {
+      .hero, .contact-wrap { grid-template-columns: 1fr; }
+      .hero { gap: 35px; padding-top: 55px; }
+      .profile-card { max-width: 420px; }
+      .grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; padding: 20px 5%; background: #111a30; flex-direction: column; gap: 14px; border-bottom: 1px solid var(--line); }
+      .nav-links.open { display: flex; }
+      .menu-btn { display: block; }
+    }
+    @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } h1 { letter-spacing: -1px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a class="logo" href="#home">Ayesha<span>.</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">Menu ☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li><li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li><li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="container hero" id="home">
+      <div>
+        <div class="eyebrow">Computer Science Student</div>
+        <h1>Hi, I'm <span>Ayesha Nisar.</span></h1>
+        <p>I’m a Computer Science student who enjoys learning how technology works and building useful digital experiences. I’m currently growing my skills in programming, web development, and problem-solving.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">Explore My Work</a>
+          <a class="btn" href="#contact">Contact Me</a>
+        </div>
+      </div>
+      <aside class="profile-card">
+        <div class="avatar" aria-label="Ayesha initials">AN</div>
+        <h2>Ayesha Nisar</h2>
+        <p>Learning • Building • Improving</p>
+      </aside>
+    </section>
+
+    <section class="container" id="about">
+      <div class="section-heading"><div class="eyebrow">A little about me</div><h2>About Me</h2></div>
+      <div class="about-box">
+        <p>I am a Computer Science student with an interest in software development and modern web technologies. I like turning ideas into practical solutions, learning new tools, and improving through hands-on projects. My goal is to become a skilled developer and contribute to meaningful technology projects.</p>
+      </div>
+    </section>
+
+    <section class="container" id="skills">
+      <div class="section-heading"><div class="eyebrow">What I'm learning</div><h2>My Skills</h2><p>Update this list as you gain experience.</p></div>
+      <div class="skill-list">
+        <span class="skill">HTML5</span><span class="skill">CSS3</span><span class="skill">JavaScript</span>
+        <span class="skill">C++</span><span class="skill">Programming Fundamentals</span>
+        <span class="skill">Problem Solving</span><span class="skill">Teamwork</span>
+        <span class="skill">Communication</span>
+      </div>
+    </section>
+
+    <section class="container" id="projects">
+      <div class="section-heading"><div class="eyebrow">Things I've worked on</div><h2>My Projects</h2><p>Replace these sample projects with your own work and GitHub links.</p></div>
+      <div class="grid">
+        <article class="card project-card">
+          <span class="tag">Web Development</span><h3>Personal Portfolio</h3>
+          <p>A responsive website to introduce myself, share my skills, and showcase my work.</p>
+          <a href="#contact">Ask me about this project →</a>
+        </article>
+        <article class="card project-card">
+          <span class="tag">Programming</span><h3>Student Management System</h3>
+          <p>A practice project concept for organizing student details and academic records.</p>
+          <a href="#contact">Ask me about this project →</a>
+        </article>
+        <article class="card project-card">
+          <span class="tag">Problem Solving</span><h3>Programming Practice</h3>
+          <p>A collection of small coding exercises created to strengthen logic and programming basics.</p>
+          <a href="#contact">Ask me about this project →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="container" id="contact">
+      <div class="section-heading"><div class="eyebrow">Let's connect</div><h2>Contact Me</h2><p>Have an idea, opportunity, or question? Feel free to reach out.</p></div>
+      <div class="contact-wrap">
+        <div class="card contact-info">
+          <h3>Get in touch</h3>
+          <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+          <p>GitHub: <a href="https://github.com/" target="_blank" rel="noopener">Add your GitHub profile</a></p>
+          <p>LinkedIn: <a href="https://www.linkedin.com/" target="_blank" rel="noopener">Add your LinkedIn profile</a></p>
+        </div>
+        <form class="card contact-form" id="contactForm">
+          <input type="text" id="name" placeholder="Your name" aria-label="Your name" required />
+          <input type="email" id="email" placeholder="Your email" aria-label="Your email" required />
+          <textarea id="message" placeholder="Your message" aria-label="Your message" required></textarea>
+          <button class="btn primary" type="submit">Prepare Email</button>
+          <p id="form-message" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container">© <span id="year"></span> Ayesha Nisar. Made with HTML, CSS & JavaScript.</div></footer>
+
+  <script>
+    // Mobile navigation
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Keep the footer year current
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // This form opens the visitor's email app; it does not send or store messages.
+    document.getElementById('contactForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const subject = encodeURIComponent('Portfolio contact from ' + name);
+      const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+      document.getElementById('form-message').textContent = 'Your email app will open with the message ready. Add your real email address in the HTML first.';
+      window.location.href = 'mailto:your.email@example.com?subject=' + subject + '&body=' + body;
+    });
+  </script>
+</body>
+</html>
